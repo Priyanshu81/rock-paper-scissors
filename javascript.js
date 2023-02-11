@@ -5,8 +5,19 @@ make a case-insensitive comparison function between the return values of these 2
 return whether the computer or the computer won the round
 */
 let n = prompt("How many rounds do you want to play?");
-for(let i = 0;i<n;i++){
-    console.log(getWinner(getComputerChoice(), getUserChoice()));
+
+function getUserChoice(){
+    /*let userChoice;
+    userChoice = prompt("Enter your choice:");
+    return userChoice.toUpperCase();*/  
+    let userChoice;
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            userChoice = button.class;
+        });
+    });
+    return userChoice;
 }
 
 function getComputerChoice(){
@@ -25,12 +36,6 @@ function getComputerChoice(){
     }
     console.log(`CPU: I choose ${randomValue}`);
     return randomValue.toUpperCase(); 
-}
-
-function getUserChoice(){
-    let userChoice;
-    userChoice = prompt("Enter your choice:");
-    return userChoice.toUpperCase();    
 }
 
 function getWinner(ComputerChoice, UserChoice){
@@ -63,5 +68,13 @@ function getWinner(ComputerChoice, UserChoice){
         if(ComputerChoice === "PAPER"){
             return "You won!!";
         }
+    }
+}
+
+for(let i = 0;i<n;i++){
+    let userchoice = null;
+    userchoice = getUserChoice();
+    if(!userchoice){
+        console.log(getWinner(userchoice, getComputerChoice()));
     }
 }
